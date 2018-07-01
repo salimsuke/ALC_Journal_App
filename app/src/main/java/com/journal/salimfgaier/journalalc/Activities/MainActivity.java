@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
@@ -14,6 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.journal.salimfgaier.journalalc.Adapters.JournalAdapter;
 import com.journal.salimfgaier.journalalc.Database.LocalDB;
 import com.journal.salimfgaier.journalalc.Database.Models.Journal;
@@ -32,10 +39,34 @@ public class MainActivity extends BaseActivity implements JournalAdapter.ItemCli
     private LocalDB mDb;
 
 
+    // [START declare_auth]
+    private FirebaseAuth mAuth;
+    // [END declare_auth]
+
+    private GoogleSignInClient mGoogleSignInClient;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // firebase instance
+
+        // [START config_signin]
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        // [END config_signin]
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        // [START initialize_auth]
+        mAuth = FirebaseAuth.getInstance();
+        // [END initialize_auth]
 
 
         // get shared pref
@@ -100,20 +131,9 @@ public class MainActivity extends BaseActivity implements JournalAdapter.ItemCli
 
         int id = item.getItemId();
 
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//        if (id == R.id.action_logout) {
-//            AuthUI.getInstance()
-//                    .signOut(this)
-//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            // user is now signed out
-//                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-//                            finish();
-//                        }
-//                    });
-//        }
+        if (id == R.id.action_logout) {
+            signOut();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -157,5 +177,21 @@ public class MainActivity extends BaseActivity implements JournalAdapter.ItemCli
         super.onStart();
 
     }
+
+
+    private void signOut() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        finish();
+                    }
+                });
+    }
+
 
 }

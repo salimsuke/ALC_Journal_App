@@ -13,6 +13,7 @@
 
     <string name="ok">Ok</string>
     <string name="signed_in_as">Signed In as : %s</string>
+    <string name="action_logout">Logout</string>
 
 
 </resources>

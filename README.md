@@ -8,7 +8,7 @@ My Journal is native Android app that uses the Google Firebase Authentication to
 
 ## Getting Started
 
-![alt text](https://github.com/salimsuke/ALC_Journal_App/blob/masterLocal/Screenshots/36478187_10217354382438007_9000397946394509312_n.png)
+![alt text](https://github.com/salimsuke/ALC_Journal_App/blob/masterLocal/Screenshots/36505184_10217354382678013_4163502448763207680_n.png)
 
 Welcome to My Journal Android App For ALC 2018
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.journal.salimfgaier.journalalc;
+package com.journal.salimfgaier.journalalc.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +36,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.journal.salimfgaier.journalalc.R;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.

@@ -8,18 +8,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".ALCJournalApp"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
-
-        <activity
-            android:name=".GoogleSignInActivity"
-            android:label="@string/label_google_sign_in" >
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".Activities.JournalDaoActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".Activities.GoogleSignInActivity"
+            android:label="@string/label_google_sign_in" >
+
         </activity>
 
     </application>

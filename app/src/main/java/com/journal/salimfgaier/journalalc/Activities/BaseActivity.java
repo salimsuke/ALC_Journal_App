@@ -1,4 +1,4 @@
-package com.journal.salimfgaier.journalalc;
+package com.journal.salimfgaier.journalalc.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import com.journal.salimfgaier.journalalc.R;
 
 public class BaseActivity extends AppCompatActivity {
 

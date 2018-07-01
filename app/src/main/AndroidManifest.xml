@@ -11,10 +11,6 @@
         android:name=".ALCJournalApp"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
 
@@ -25,6 +21,10 @@
         <activity
             android:name=".Activities.GoogleSignInActivity"
             android:label="@string/label_google_sign_in" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
 

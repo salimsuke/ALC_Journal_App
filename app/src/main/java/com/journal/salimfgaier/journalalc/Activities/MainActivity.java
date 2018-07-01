@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,13 +19,14 @@ import com.journal.salimfgaier.journalalc.Database.LocalDB;
 import com.journal.salimfgaier.journalalc.Database.Models.Journal;
 import com.journal.salimfgaier.journalalc.R;
 import com.journal.salimfgaier.journalalc.Utility.AppExecutors;
+import com.journal.salimfgaier.journalalc.Utility.SharedPrefsUtils;
 import com.journal.salimfgaier.journalalc.ViewModel.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements JournalAdapter.ItemClickListener {
+public class MainActivity extends BaseActivity implements JournalAdapter.ItemClickListener {
     private RecyclerView mRecyclerView;
     private JournalAdapter mAdapter;
     private LocalDB mDb;
@@ -37,8 +36,14 @@ public class MainActivity extends AppCompatActivity implements JournalAdapter.It
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+
+
+        // get shared pref
+
+
+        String firebaseId = SharedPrefsUtils.getStringPreference(getApplicationContext(), BaseActivity.ARG_FIREBASE_ID);
+
+        showSuccessSnackBar(findViewById(android.R.id.content), MainActivity.this, getApplicationContext().getString(R.string.signed_in_as, firebaseId));
 
         mRecyclerView = findViewById(R.id.rv_articles);
         mAdapter = new JournalAdapter(this);

@@ -37,6 +37,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.journal.salimfgaier.journalalc.R;
+import com.journal.salimfgaier.journalalc.Utility.SharedPrefsUtils;
 
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
@@ -68,6 +69,7 @@ public class GoogleSignInActivity extends BaseActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
+
 
         // [START config_signin]
         // Configure Google Sign In
@@ -190,8 +192,15 @@ public class GoogleSignInActivity extends BaseActivity implements
             mStatusTextView.setText(getString(R.string.google_status_fmt, user.getEmail()));
             mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
+
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+
+
+            SharedPrefsUtils.setStringPreference(getApplicationContext(), BaseActivity.ARG_FIREBASE_ID, user.getUid());
+
+            startActivity(new Intent(GoogleSignInActivity.this, MainActivity.class));
+
         } else {
             mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);

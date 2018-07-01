@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import com.journal.salimfgaier.journalalc.Database.LocalDB;
 import com.journal.salimfgaier.journalalc.Database.Models.Journal;
@@ -27,7 +27,8 @@ public class JournalDaoActivity extends AppCompatActivity {
     private static final String TAG = JournalDaoActivity.class.getSimpleName();
     private int mJournalId = DEFAULT_ENTRY_ID;
     private FloatingActionButton mFabSave;
-    private EditText mEditTextTitle, mEditTextContent;
+
+    private TextInputLayout txt_journal_name, txt_journal_description;
     private LocalDB mDb;
     private JournalRepo mRepository;
 
@@ -36,9 +37,10 @@ public class JournalDaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_dao);
 
-        mEditTextTitle = findViewById(R.id.edit_text_title);
-        mEditTextContent = findViewById(R.id.edit_text_content);
-        Log.d(TAG, mEditTextTitle.getText().toString());
+        txt_journal_name = findViewById(R.id.txt_journal_name);
+        txt_journal_description = findViewById(R.id.txt_journal_description);
+
+
         mFabSave = findViewById(R.id.fab_save_journal);
         mFabSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +71,27 @@ public class JournalDaoActivity extends AppCompatActivity {
     public void populateUI(Journal journal) {
         if (journal == null) return;
 
-        mEditTextTitle.setText(journal.getTitle());
-        mEditTextContent.setText(journal.getContent());
+        txt_journal_name.getEditText().setText(journal.getTitle());
+        //mEditTextTitle.setText(journal.getTitle());
+
+
+        //mEditTextContent.setText(journal.getContent());
+
+        txt_journal_description.getEditText().setText(journal.getContent());
     }
 
     public void onSaveFabClicked() {
-        final String title = mEditTextTitle.getText().toString();
-        final String content = mEditTextContent.getText().toString();
+
+        final String title = txt_journal_name.getEditText().getText().toString();
+
+        final String content = txt_journal_description.getEditText().getText().toString();
+
+        //final String title = mEditTextTitle.getText().toString();
+        //final String content = mEditTextContent.getText().toString();
+
+
         Log.d(TAG, title + "\t" + content);
+
         final Journal journal = new Journal(title, content, new Date());
         AppExecutors.getInstance().diskIO.execute(new Runnable() {
             @Override

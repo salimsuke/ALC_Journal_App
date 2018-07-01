@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">JournalALC#</string>
+    <string name="app_name">My Journal</string>
     <string name="loading">Loading…</string>
     <string name="disconnect">Disconnect</string>
     <string name="sign_out">Sign Out</string>
     <string name="signed_in">Signed In</string>
-    <string name="google_title_text">Google Sign In</string>
-    <string name="signed_out">Signed Out</string>
+    <string name="google_title_text">My Journal</string>
+    <string name="signed_out">Welcome to My Journal app \n \n Please sign in using the \n button bellow and select one of your emails</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
-    <string name="label_google_sign_in">Firebase + Google Sign In</string>
+    <string name="label_google_sign_in">My Journal</string>
     <string name="google_status_fmt">Google User: %s</string>
     <string name="firebase_status_fmt">Firebase User: %s</string>
 

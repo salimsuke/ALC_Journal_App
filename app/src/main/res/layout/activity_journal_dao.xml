@@ -7,42 +7,116 @@
     android:fitsSystemWindows="true"
     tools:context=".Activities.JournalDaoActivity">
 
-    <EditText
-        android:id="@+id/edit_text_title"
+
+    <ImageView
+        android:id="@+id/img_add_update_journal"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/add_update_journal" />
+
+    <TextView
+        android:id="@+id/title_text"
+        style="@style/ThemeOverlay.MyTextDetail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Title"
-        app:layout_constraintBottom_toTopOf="@+id/edit_text_content"
+        android:text="Add or Update Journal"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/name_lay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread" />
+        app:layout_constraintTop_toBottomOf="@+id/img_add_update_journal" />
 
-    <EditText
-        android:id="@+id/edit_text_content"
+    <LinearLayout
+        android:id="@+id/name_lay"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/desc_lay"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_text"
+        app:layout_constraintVertical_chainStyle="spread">
+
+        <TextView
+            android:id="@+id/txt_journal_name_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Journal name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txt_journal_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Please put a journal name here" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/desc_lay"
+        android:layout_height="wrap_content"
+
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
+
         app:layout_constraintBottom_toTopOf="@+id/fab_save_journal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_title" />
+        app:layout_constraintTop_toBottomOf="@+id/name_lay">
+
+        <TextView
+            android:id="@+id/txt_journal_description_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Journal description"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txt_journal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Please put a journal description here" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_save_journal"
@@ -59,5 +133,6 @@
         app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_check_black_24dp" />
+
 
 </android.support.constraint.ConstraintLayout>
